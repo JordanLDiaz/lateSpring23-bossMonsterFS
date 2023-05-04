@@ -1,0 +1,28 @@
+body {
+  background-image: url('./assets/bg-forest.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.hero {
+  height: 40vh;
+}
+
+.sidekick {
+  max-height: 20vh;
+  max-width: 20vw;
+  transform: rotateY(180deg);
+}
+
+.boss {
+  transform: translateY(-5rem);
+}
+
+.shop-card {
+  background-color: rgba(115, 244, 186, 0.514);
+}
+
+.mini-sidekick {
+  max-height: 35px;
+}

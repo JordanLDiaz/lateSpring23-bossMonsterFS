@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Squirrel Mafia</title>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'
+    integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD' crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.1.96/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+  body.debug .container,
+  body.debug .container-fluid {
+    outline: 2px double blue;
+    outline-offset: -2px;
+  }
+
+  body.debug .row {
+    outline: 2px dashed red;
+    outline-offset: -2px;
+  }
+
+  body.debug [class*="col-"] {
+    outline: 2px dotted forestgreen;
+    outline-offset: -3px;
+  }
+</style>
+
+<body class="container-fluid">
+  <main class="row text-light">
+    <div class="col-12">
+      <!-- SECTION hero and sidekicks -->
+      <section class="row">
+        <!-- STUB hero templates -->
+        <div class="col-4">
+          <div class="justify-content-center" id="hero">
+            <!-- <img class="img-fluid hero" src="assets/superCat.gif">
+            <h5 class="text-center">Super Cat</h5> -->
+          </div>
+          <div class="d-flex justify-content-center" id="hero-stats">
+            <!-- <h5 class="mx-2">Health: <span>100</span></h5>
+            <h5 class="mx-2">Damage: <span>5</span></h5> -->
+          </div>
+        </div>
+
+        <!-- STUB sidekick templates -->
+        <div class="col-8 d-flex justify-content-between mt-5 text-center">
+          <!-- <div id="kneady-boy">
+            <img class="img-fluid sidekick" src="assets/kneady-boy2.gif">
+            <h5>Kneady Boy</h5>
+          </div>
+          <div id="major-sideeye">
+            <img class="img-fluid sidekick" src="assets/major-sideeye.gif">
+            <h5>Major SideEye</h5>
+          </div>
+          <div id="lazer-kitty">
+            <img class="img-fluid sidekick" src="assets/lazer-kitty2.gif">
+            <h5>Lazer Kitty</h5>
+          </div>
+          <div id="rock-n-gato">
+            <img class="img-fluid sidekick" src="assets/rock'n'gato.gif">
+            <h5>Lazer Kitty</h5>
+          </div> -->
+        </div>
+      </section>
+
+      <!-- SECTION boss -->
+      <section class="row justify-content-center">
+        <div class="col-6 text-center boss">
+          <div id="boss">
+            <!-- <img class="img-fluid" src="assets/squirrel-mafia.gif">
+            <h4>Rat-a-tat-tat</h4> -->
+          </div>
+          <div id="boss-stats">
+            <!-- <h5>Level: <span>1</span></h5>
+            <div class="progress" role="progressbar" aria-label="Danger striped progress bar" aria-valuenow="100"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped bg-danger" style="width: 100%"></div>
+            </div>
+            <p>Health: <span>100</span></p> -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION Shop and $$ -->
+      <section class="row m-2">
+        <div class="col-12 shop-card rounded p-2">
+          <div class="row text-center">
+            <h3>Shop: <span id="coin">0</span> 🪙</h3>
+          </div>
+          <div class="row justify-content-between mx-5">
+            <button class="col-2 btn btn-success rounded">
+              <h5>Kneady Boy</h5>
+              <div class="d-flex justify-content-evenly">
+                <img src="assets/kneady-boy2.gif" class="img-fluid mini-sidekick">
+                <h5>100 🪙</h5>
+              </div>
+            </button>
+            <button class="col-2 btn btn-success rounded">
+              <h5>Major SideEye</h5>
+              <div class="d-flex justify-content-evenly">
+                <img src="assets/major-sideeye.gif" class="img-fluid mini-sidekick">
+                <h5>200 🪙</h5>
+              </div>
+            </button>
+            <button class="col-2 btn btn-success rounded">
+              <h5>Lazer Kitty</h5>
+              <div class="d-flex justify-content-evenly">
+                <img src="assets/lazer-kitty2.gif" class="img-fluid mini-sidekick">
+                <h5>500 🪙</h5>
+              </div>
+            </button>
+            <button class="col-2 btn btn-success rounded">
+              <h5>Rock'n'Gato</h5>
+              <div class="d-flex justify-content-evenly">
+                <img src="assets/rock'n'gato.gif" class="img-fluid mini-sidekick">
+                <h5>1000 🪙</h5>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+
+
+  <!-- Bootstrap Javascript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"
+    integrity="sha256-hw7v8jZF/rFEdx1ZHepT4D73AFTHLu/P9kEyrNesRyc=" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
