@@ -39,7 +39,7 @@ const sidekicks = [
     type: 'healing',
     image: "assets/lazer-kitty2.gif",
     cost: 500,
-    value: 20,
+    value: 15,
     isPurchased: false
   },
   {
@@ -84,6 +84,11 @@ function drawBoss() {
 }
 
 function drawBossStats() {
+  // This is a check that ensures bosses health doesn't dip below 0
+  if (boss.health < 0) {
+    boss.health = 0
+  }
+
   let bossStatsTemplate = ''
   bossStatsTemplate += `
   <h5>Level: <span>${boss.level}</span></h5>
@@ -166,7 +171,130 @@ function bossAttacks() {
 setInterval(bossAttacks, 5000)
 
 // SECTION Start fireside here by adding companions (companion array exists in data section)
-// NOTE lets start by writing functions to buy Kneady Boy as sidekick
+// NOTE lets start by writing functions to draw Kneady Boy as sidekick
+// function drawKneadyBoy() {
+//   // I always start with a console to make sure function is working
+//   // console.log('drawing kneady boy')
+//   // create a template for kneady boy, which will be an empty string
+//   let kneadyBoyTemplate = ''
+//   // add to the template the html for kneady boy
+//   kneadyBoyTemplate += `
+//   <img class="img-fluid sidekick" src="${sidekicks[0].image}">
+//   <h5>${sidekicks[0].name}</h5>
+//   `
+//   // @ts-ignore
+//   document.getElementById('kneady-boy').innerHTML = kneadyBoyTemplate
+// }
+// drawKneadyBoy()
+
+// NOTE now lets create a function that lets us buy kneady boy
+// function buyKneadyBoy() {
+//   // first i want to check that he isnt purchased yet, and that I have enough 🪙 to purchase
+//   if (hero.coin >= sidekicks[0].cost && !sidekicks[0].isPurchased) {
+//     // change is purchased to true
+//     sidekicks[0].isPurchased = true
+//     // decrease total coin by cost of sidekick, redraw coins
+//     hero.coin -= sidekicks[0].cost
+//     drawCoins()
+//     console.log('[REMAINING COINS]', hero.coin);
+//     drawKneadyBoy()
+//   }
+//   // alert player that they don't have enough coin or they already have this sidekick
+//   else {
+//     window.alert('You do not have enough 🪙, or you already have this sidekick, keep fighting Rat-a-tat-tat!')
+//   }
+// }
+
+// now lets write a function so that kneady boy causes damage to boss
+// function kneadyBoyAttacks() {
+//   // make sure that the boss is alive
+//   if (boss.health > 0) {
+//     // decrease the bosses health by the sidekicks damage
+//     boss.health -= sidekicks[0].value
+//     drawBossStats()
+//   } else {
+//     window.alert('You have defeated Rat-a-tat-tat!')
+//     // give the player a bonus
+//     hero.coin = hero.coin += 100
+//     hero.damage += 5
+//     hero.health = 100
+//     drawHeroStats()
+//     levelUpBoss()
+//   }
+// }
+
+// setInterval(() => {
+//   if (sidekicks[0].isPurchased) {
+//     kneadyBoyAttacks()
+//   }
+// }, 5000)
+
+
+// NOTE now let's write some refactored code so that we can draw, buy, and have ALL the sidekicks attack
+
+function drawSideKicks() {
+  let sideKicksTemplate = ''
+  // i need to grab one sidekick at a time, so lets for each over our sidekicks array
+  sidekicks.forEach(sidekick => {
+    if (sidekick.isPurchased) {
+      sideKicksTemplate += `
+      <div>
+      <img class="img-fluid sidekick" src="${sidekick.image}">
+      <h5>${sidekick.name}</h5>
+    </div>
+      `
+    }
+  })
+  // @ts-ignore
+  document.getElementById('sidekicks').innerHTML = sideKicksTemplate
+}
+
+// now lets create refactored code for buying a sidekick
+function buySidekicks(sidekickName) {
+  const purchasedSidekick = sidekicks.find(sidekick => sidekick.name == sidekickName)
+
+  // check that we have enough mons and that sidekick has not been purchased
+  // @ts-ignore
+  if (hero.coin >= purchasedSidekick.cost && !purchasedSidekick.isPurchased) {
+    // @ts-ignore
+    hero.coin -= purchasedSidekick.cost
+    // @ts-ignore
+    purchasedSidekick.isPurchased = true
+    drawCoins()
+    drawSideKicks()
+  } else {
+    window.alert('You do not have enough 🪙, or you already have this sidekick, keep fighting Rat-a-tat-tat!')
+  }
+}
+
+// now lets get the sidekicks to do their job
+function sidekicksHelp() {
+  sidekicks.forEach(sidekick => {
+    if (boss.health <= 0) {
+      boss.health = 0
+      window.alert('You defeated Rat-a-tat-tat, play again?')
+      hero.coin = hero.coin += 100
+      drawCoins()
+      hero.damage += 5
+      hero.health = 100
+      drawHeroStats()
+      levelUpBoss()
+      drawBossStats()
+    }
+    if (sidekick.isPurchased && boss.health > 0) {
+      if (sidekick.type == 'damage') {
+        boss.health -= sidekick.value
+        drawBossStats()
+      } else if (sidekick.type == 'healing') {
+        hero.health += sidekick.value
+        drawHeroStats()
+      }
+    }
+  })
+}
+
+setInterval(sidekicksHelp, 3000)
+
 
 
 // SECTION call draw functions on page load
